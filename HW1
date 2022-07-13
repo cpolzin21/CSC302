@@ -1,0 +1,33 @@
+#Use pandas to read the olympic_medals.csv from the DATA folder on Google Drive. Then perform the followings by using pandas and/or Python built-in functions.
+
+#(a) Find the size of the data frame. How many rows, how many columns?
+
+#(b) Use the appropriate function to report the data types for all columns.
+
+#(c) Find how many unique cities matches were held at. (Hint: unique( ). For instance, the following example tells how many unique Events held:) len(medals['Event'].unique())
+
+#(d) Find how many medals the USA team won in total.
+
+#(e) Find the total number of medals for each Nationality. (Hint: please search for groupby() function with count. For instance, the following example counts at how many locations each event was held. ) medals.groupby(by='Event')['Location'].count()
+
+
+#from google.colab import drive
+drive.mount('/content/drive')
+
+#(a)
+import pandas as pd
+df = pd.read_csv('/content/drive/MyDrive/DATA/olympic_medals.csv')
+df.shape
+
+#(b)
+df.columns
+df.dtypes
+
+#(c)
+df['Location'].nunique()
+
+#(d)
+(df['Nationality'].values == 'USA').sum()
+
+#(e)
+df.groupby(by='Nationality')['Medal'].count()
